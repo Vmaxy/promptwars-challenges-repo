@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="EcoStep — Calculate your carbon footprint, discover personalized reduction strategies, and track your progress toward a sustainable lifestyle.">
+  <meta name="theme-color" content="#064e3b">
+  <title>EcoStep — Carbon Footprint Awareness Platform</title>
+
+  <!-- Tailwind CSS v3 via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            primary: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+            mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <!-- Animated Background -->
+  <div class="eco-bg" aria-hidden="true"></div>
+
+  <!-- Skip to Main Content (Accessibility) -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- ============================================================
+       HEADER
+       ============================================================ -->
+  <header class="eco-header" role="banner">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <!-- Logo -->
+        <div class="eco-logo" aria-label="EcoStep Home">
+          <div class="eco-logo-icon" aria-hidden="true">🌿</div>
+          <span class="eco-logo-text">EcoStep</span>
+        </div>
+
+        <!-- Navigation -->
+        <nav aria-label="Main navigation">
+          <div class="hidden sm:flex items-center gap-1">
+            <a href="#calculator-section" class="eco-nav-link active" aria-label="Navigate to Calculator section">Calculator</a>
+            <a href="#dashboard-section" class="eco-nav-link" aria-label="Navigate to Dashboard section">Dashboard</a>
+            <a href="#assistant-section" class="eco-nav-link" aria-label="Navigate to Smart Assistant section">Assistant</a>
+            <a href="#checklist-section" class="eco-nav-link" aria-label="Navigate to Action Plan section">Action Plan</a>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       MAIN CONTENT
+       ============================================================ -->
+  <main id="main-content" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+
+    <!-- ========== HERO SECTION ========== -->
+    <section class="text-center py-8 animate-fade-up" aria-labelledby="hero-title">
+      <div class="section-badge mb-4">
+        <span aria-hidden="true">🌍</span>
+        Carbon Footprint Awareness
+      </div>
+      <h1 id="hero-title" class="section-title text-3xl sm:text-4xl lg:text-5xl mb-4">
+        Know Your Impact.<br>
+        <span style="background:linear-gradient(135deg,#34d399,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">
+          Reduce Your Footprint.
+        </span>
+      </h1>
+      <p class="section-subtitle mx-auto">
+        Calculate your annual carbon emissions, get personalized AI-powered suggestions,
+        and track the real impact of your daily choices on our planet.
+      </p>
+    </section>
+
+    <!-- ========== CALCULATOR SECTION ========== -->
+    <section id="calculator-section" class="animate-fade-up delay-100" aria-labelledby="calculator-title">
+      <div class="flex items-center gap-3 mb-6">
+        <span class="section-badge" aria-hidden="true">🧮 Calculator</span>
+      </div>
+      <h2 id="calculator-title" class="section-title text-2xl mb-2">Footprint Calculator</h2>
+      <p class="section-subtitle mb-8">Adjust the sliders and selections below to estimate your annual carbon emissions.</p>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+        <!-- TRANSPORT CARD -->
+        <div class="glass-card p-6 animate-scale-in delay-200">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="stat-icon" style="background:rgba(59,130,246,0.15);color:#60a5fa;" aria-hidden="true">🚗</div>
+            <div>
+              <h3 class="text-lg font-bold text-slate-100">Transportation</h3>
+              <p class="text-xs text-slate-400">Daily commute emissions</p>
+            </div>
+          </div>
+
+          <form aria-label="Transportation inputs">
+            <!-- Commute Distance -->
+            <div class="mb-6">
+              <label for="commute-distance" class="eco-label">
+                <span>Daily Commute (one-way)</span>
+                <span id="commute-distance-display" class="eco-label-value" aria-live="polite">20 km</span>
+              </label>
+              <div class="range-track relative">
+                <div id="commute-distance-fill" class="range-fill" aria-hidden="true"></div>
+                <input
+                  type="range"
+                  id="commute-distance"
+                  min="0"
+                  max="150"
+                  value="20"
+                  step="1"
+                  aria-label="Daily commute distance in kilometers, one-way"
+                  aria-valuemin="0"
+                  aria-valuemax="150"
+                  aria-valuenow="20"
+                  aria-valuetext="20 kilometers"
+                >
+              </div>
+              <div class="flex justify-between text-xs text-slate-500 mt-1">
+                <span>0 km</span>
+                <span>150 km</span>
+              </div>
+            </div>
+
+            <!-- Vehicle Type -->
+            <div>
+              <label for="vehicle-type" class="eco-label">
+                <span>Vehicle Type</span>
+              </label>
+              <select
+                id="vehicle-type"
+                class="eco-select"
+                aria-label="Select your primary vehicle type for commuting"
+              >
+                <option value="gasCar">Gasoline Car</option>
+                <option value="diesel">Diesel Vehicle</option>
+                <option value="hybrid">Hybrid Vehicle</option>
+                <option value="electric">Electric Vehicle</option>
+                <option value="publicTransit">Public Transit (Bus/Rail)</option>
+                <option value="bicycle">Bicycle</option>
+                <option value="walking">Walking</option>
+              </select>
+            </div>
+          </form>
+        </div>
+
+        <!-- ENERGY CARD -->
+        <div class="glass-card p-6 animate-scale-in delay-300">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="stat-icon" style="background:rgba(245,158,11,0.15);color:#fbbf24;" aria-hidden="true">⚡</div>
+            <div>
+              <h3 class="text-lg font-bold text-slate-100">Energy</h3>
+              <p class="text-xs text-slate-400">Household electricity usage</p>
+            </div>
+          </div>
+
+          <form aria-label="Energy usage inputs">
+            <!-- Monthly kWh -->
+            <div class="mb-6">
+              <label for="energy-usage" class="eco-label">
+                <span>Monthly Electricity</span>
+                <span id="energy-usage-display" class="eco-label-value" aria-live="polite">300 kWh</span>
+              </label>
+              <div class="range-track relative">
+                <div id="energy-usage-fill" class="range-fill" aria-hidden="true"></div>
+                <input
+                  type="range"
+                  id="energy-usage"
+                  min="0"
+                  max="1500"
+                  value="300"
+                  step="10"
+                  aria-label="Monthly household electricity usage in kilowatt-hours"
+                  aria-valuemin="0"
+                  aria-valuemax="1500"
+                  aria-valuenow="300"
+                  aria-valuetext="300 kilowatt-hours"
+                >
+              </div>
+              <div class="flex justify-between text-xs text-slate-500 mt-1">
+                <span>0 kWh</span>
+                <span>1500 kWh</span>
+              </div>
+            </div>
+
+            <!-- Energy Source -->
+            <div>
+              <label for="energy-source" class="eco-label">
+                <span>Energy Source</span>
+              </label>
+              <select
+                id="energy-source"
+                class="eco-select"
+                aria-label="Select your primary household energy source"
+              >
+                <option value="electricityGrid">Standard Grid Mix</option>
+                <option value="naturalGas">Natural Gas</option>
+                <option value="solarRenewable">Solar / Renewable</option>
+              </select>
+            </div>
+          </form>
+        </div>
+
+        <!-- DIET CARD -->
+        <div class="glass-card p-6 animate-scale-in delay-400">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="stat-icon" style="background:rgba(16,185,129,0.15);color:#34d399;" aria-hidden="true">🥗</div>
+            <div>
+              <h3 class="text-lg font-bold text-slate-100">Diet</h3>
+              <p class="text-xs text-slate-400">Dietary carbon contribution</p>
+            </div>
+          </div>
+
+          <form aria-label="Diet selection input">
+            <div>
+              <label for="diet-type" class="eco-label">
+                <span>Dietary Style</span>
+              </label>
+              <select
+                id="diet-type"
+                class="eco-select"
+                aria-label="Select your dietary style to estimate food-related carbon emissions"
+              >
+                <option value="heavyMeat">Heavy Meat (daily red meat)</option>
+                <option value="averageMeat" selected>Average Omnivore</option>
+                <option value="lightMeat">Light Meat (poultry/fish)</option>
+                <option value="vegetarian">Vegetarian</option>
+                <option value="vegan">Vegan</option>
+              </select>
+            </div>
+
+            <!-- Diet Info Box -->
+            <div class="mt-6 p-4 rounded-lg" style="background:rgba(16,185,129,0.06);border:1px solid rgba(16,185,129,0.12);">
+              <p class="text-xs text-slate-400 leading-relaxed">
+                <strong class="text-slate-300">How it works:</strong>
+                Diet emissions are based on annual averages from lifecycle assessments
+                of food production, including farming, processing, and transportation.
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== DASHBOARD SECTION ========== -->
+    <section id="dashboard-section" class="animate-fade-up delay-200" aria-labelledby="dashboard-title">
+      <div class="flex items-center gap-3 mb-6">
+        <span class="section-badge" aria-hidden="true">📊 Dashboard</span>
+      </div>
+      <h2 id="dashboard-title" class="section-title text-2xl mb-2">Your Carbon Dashboard</h2>
+      <p class="section-subtitle mb-8">Real-time visualization of your estimated annual carbon footprint.</p>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+        <!-- Progress Ring (Main Visual) -->
+        <div class="lg:col-span-5 glass-card p-8 flex flex-col items-center justify-center animate-scale-in delay-300">
+          <div class="progress-ring-container mb-6">
+            <svg class="progress-ring" width="220" height="220" role="img" aria-label="Carbon footprint progress ring showing your annual CO2 emissions">
+              <title>Annual CO2 Emissions Ring</title>
+              <circle class="progress-ring__bg" cx="110" cy="110" r="95"></circle>
+              <circle
+                id="progress-ring-fill"
+                class="progress-ring__fill"
+                cx="110"
+                cy="110"
+                r="95"
+                style="stroke:#10b981;stroke-dasharray:597;stroke-dashoffset:597;"
+              ></circle>
+            </svg>
+            <div class="progress-ring__text">
+              <span id="progress-ring-value" class="progress-ring__value" aria-live="polite" aria-atomic="true">0.0</span>
+              <span class="progress-ring__unit">metric tons CO₂/yr</span>
+              <span class="progress-ring__label">Annual Footprint</span>
+            </div>
+          </div>
+
+          <!-- Comparison Badge -->
+          <div id="comparison-badge" class="comparison-badge below" role="status" aria-live="polite" aria-label="Comparison against global average carbon footprint">
+            ✓ Calculating...
+          </div>
+        </div>
+
+        <!-- Right Side: Stats + Bar Chart -->
+        <div class="lg:col-span-7 space-y-6">
+
+          <!-- Stat Cards Grid -->
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 animate-fade-up delay-300">
+            <div class="stat-card">
+              <div class="stat-icon" style="background:rgba(148,163,184,0.1);color:#94a3b8;" aria-hidden="true">🌐</div>
+              <div id="stat-total" class="stat-value text-slate-100" aria-label="Total annual carbon emissions">0.0 t</div>
+              <div class="stat-label">Total Footprint</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon" style="background:rgba(59,130,246,0.1);color:#60a5fa;" aria-hidden="true">🚗</div>
+              <div id="stat-transport" class="stat-value" style="color:#60a5fa;" aria-label="Transport emissions">0.00 t</div>
+              <div class="stat-label">Transport</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon" style="background:rgba(245,158,11,0.1);color:#fbbf24;" aria-hidden="true">⚡</div>
+              <div id="stat-energy" class="stat-value" style="color:#fbbf24;" aria-label="Energy emissions">0.00 t</div>
+              <div class="stat-label">Energy</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon" style="background:rgba(16,185,129,0.1);color:#34d399;" aria-hidden="true">🥗</div>
+              <div id="stat-diet" class="stat-value" style="color:#34d399;" aria-label="Diet emissions">0.00 t</div>
+              <div class="stat-label">Diet</div>
+            </div>
+            <div class="stat-card sm:col-span-2">
+              <div class="stat-icon" style="background:rgba(16,185,129,0.15);color:#10b981;" aria-hidden="true">♻️</div>
+              <div id="stat-savings" class="stat-value" style="color:#10b981;" aria-label="Emissions saved from completed actions">-0.00 t</div>
+              <div class="stat-label">Actions Savings</div>
+            </div>
+          </div>
+
+          <!-- Category Bar Chart -->
+          <div class="glass-card p-6 animate-fade-up delay-400">
+            <h3 class="text-sm font-bold text-slate-300 uppercase tracking-wider mb-4">Emissions Breakdown</h3>
+            <div class="bar-chart-container" role="img" aria-label="Bar chart showing carbon emissions breakdown by category">
+              <!-- Transport Bar -->
+              <div class="bar-item">
+                <div class="bar-label-row">
+                  <span class="bar-category">
+                    <span aria-hidden="true">🚗</span> Transportation
+                  </span>
+                  <span id="bar-value-transport" class="bar-value" style="color:#60a5fa;">0.00 t (0%)</span>
+                </div>
+                <div class="bar-track" role="progressbar" aria-label="Transport emissions percentage" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                  <div id="bar-fill-transport" class="bar-fill" style="width:1%;background-color:#3b82f6;"></div>
+                </div>
+              </div>
+              <!-- Energy Bar -->
+              <div class="bar-item">
+                <div class="bar-label-row">
+                  <span class="bar-category">
+                    <span aria-hidden="true">⚡</span> Energy
+                  </span>
+                  <span id="bar-value-energy" class="bar-value" style="color:#fbbf24;">0.00 t (0%)</span>
+                </div>
+                <div class="bar-track" role="progressbar" aria-label="Energy emissions percentage" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                  <div id="bar-fill-energy" class="bar-fill" style="width:1%;background-color:#f59e0b;"></div>
+                </div>
+              </div>
+              <!-- Diet Bar -->
+              <div class="bar-item">
+                <div class="bar-label-row">
+                  <span class="bar-category">
+                    <span aria-hidden="true">🥗</span> Diet
+                  </span>
+                  <span id="bar-value-diet" class="bar-value" style="color:#34d399;">0.00 t (0%)</span>
+                </div>
+                <div class="bar-track" role="progressbar" aria-label="Diet emissions percentage" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                  <div id="bar-fill-diet" class="bar-fill" style="width:1%;background-color:#10b981;"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Global Average Reference Line -->
+            <div class="mt-5 pt-4" style="border-top:1px solid rgba(148,163,184,0.1);">
+              <div class="flex flex-wrap items-center gap-4 text-xs text-slate-500">
+                <span>📌 <strong class="text-slate-400">Global Avg:</strong> 4.7 t/yr</span>
+                <span>🇪🇺 <strong class="text-slate-400">EU Avg:</strong> 6.8 t/yr</span>
+                <span>🇺🇸 <strong class="text-slate-400">US Avg:</strong> 16.0 t/yr</span>
+                <span>🎯 <strong class="text-slate-400">Target:</strong> 2.0 t/yr</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SMART ASSISTANT SECTION ========== -->
+    <section id="assistant-section" class="animate-fade-up delay-300" aria-labelledby="assistant-title">
+      <div class="flex items-center gap-3 mb-6">
+        <span class="section-badge" aria-hidden="true">🤖 Smart Assistant</span>
+      </div>
+      <h2 id="assistant-title" class="section-title text-2xl mb-2">Personalized Recommendations</h2>
+      <p class="section-subtitle mb-8">Context-aware suggestions based on your highest emission category.</p>
+
+      <div class="glass-card p-6 lg:p-8 assistant-panel">
+        <!-- Assistant Header -->
+        <div class="flex items-start gap-4 mb-6">
+          <div class="assistant-avatar" aria-hidden="true">🧠</div>
+          <div>
+            <h3 class="text-lg font-bold text-slate-100">EcoStep AI Assistant</h3>
+            <p id="assistant-context" class="text-sm text-slate-400 mt-1" role="status" aria-live="polite">
+              Analyzing your footprint...
+            </p>
+          </div>
+        </div>
+
+        <!-- Tips Container (dynamically rendered) -->
+        <div id="smart-assistant-tips" class="space-y-4" role="list" aria-label="Smart assistant personalized tips">
+          <!-- Tips are rendered dynamically by EcoUI.renderSmartAssistant() -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== ACTION CHECKLIST SECTION ========== -->
+    <section id="checklist-section" class="animate-fade-up delay-400" aria-labelledby="checklist-title">
+      <div class="flex items-center gap-3 mb-6">
+        <span class="section-badge" aria-hidden="true">✅ Action Plan</span>
+      </div>
+      <h2 id="checklist-title" class="section-title text-2xl mb-2">Your Action Checklist</h2>
+      <p class="section-subtitle mb-4">
+        Check off actions you commit to. Each checked item instantly deducts its CO₂ savings from your total footprint.
+      </p>
+
+      <!-- Savings Summary -->
+      <div class="glass-card p-5 mb-6 flex flex-wrap items-center justify-between gap-4" role="status" aria-live="polite" aria-label="Total potential savings from checked actions">
+        <div class="flex items-center gap-3">
+          <div class="stat-icon" style="background:rgba(16,185,129,0.15);color:#10b981;" aria-hidden="true">🌱</div>
+          <div>
+            <div class="text-sm font-semibold text-slate-300">Total Impact of Your Actions</div>
+            <div class="text-xs text-slate-500">Check items to deduct emissions from your footprint</div>
+          </div>
+        </div>
+        <div class="flex items-baseline gap-1">
+          <span id="total-savings-display" class="text-3xl font-extrabold" style="font-family:var(--font-mono);color:#10b981;">0.0</span>
+          <span class="text-sm font-semibold text-slate-400">t CO₂/yr saved</span>
+        </div>
+      </div>
+
+      <!-- Checklist Container (dynamically rendered) -->
+      <div id="action-checklist" class="space-y-3" role="group" aria-label="Carbon reduction action checklist">
+        <!-- Checklist items are rendered dynamically by EcoUI.renderChecklist() -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="eco-footer mt-16 py-8" role="contentinfo">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-2">
+          <span aria-hidden="true">🌿</span>
+          <span class="text-sm font-semibold text-slate-400">EcoStep</span>
+          <span class="text-xs text-slate-600">— Carbon Footprint Awareness Platform</span>
+        </div>
+        <div class="text-xs text-slate-600">
+          Data sources: EPA, IPCC AR6, IEA, Our World in Data. For educational purposes.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Application Script -->
+  <script src="app.js"></script>
+</body>
+</html>
